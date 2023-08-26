@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container"> <!-- 여기에 mt-5 클래스를 추가하여 상단에 여백을 줍니다. -->
+    <p class="text-center"> 매매가 대비 전세가율을 보여주는 페이지입니다. </p>
+
+  <div class="row h-100 justify-content-center align-items-center" style="margin-top: 50px;">
+      <form method="get" action="{% url 'search' %}" class="w-50">
+          <div class="input-group">
+              <input type="text" class="form-control search-box" name="query" placeholder="단지명을 입력하세요...">
+              <div class="input-group-append">
+                  <button type="submit" class="btn btn-primary">검색</button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Google Maps Container -->
+  <div id="map" style="height: 500px;"></div> 
+</div>
+
+
+<script>
+// Your modified JavaScript for Google Maps
+let map;
+let currentInfoWindow = null;  // 현재 활성화된 InfoWindow를 추적하기 위한 변수
+
+function initMap() {
+  const locations = {{ locations|safe }}; // Get data from Django
+  const center = locations.length > 0 ? locations[0] : { lat: 37.5665, lng: 126.9780 }; // Seoul as default
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+    center: center,
+  });
+
+  locations.forEach(location => {
+     const marker = new google.maps.Marker({
+       map: map,
+       position: { lat: location.lat, lng: location.lng },
+       title: location.단지명,
+     });
+ 
+     marker.addListener('click', function() {
+       const contentString = `
+         <h3>${location.단지명}</h3>
+         <p><strong>시군구:</strong> ${location.시군구}</p>
+         <p><strong>계약연월:</strong> ${location.계약연월}</p>
+         <p><strong>전용면적:</strong> ${location.전용면적} ㎡</p>
+         <p><strong>매매대금 평균:</strong> ${location.매매대금_평균} 만원</p>
+         <p><strong>전세 평균:</strong> ${location.전세_평균} 만원</p>
+         <p><strong>전세가율 90%:</strong> ${location.전세가율_90}만원</p>
+         <p><strong>전세가율 80%:</strong> ${location.전세가율_80}만원</p>
+         <p><strong>전세가율 70%:</strong> ${location.전세가율_70}만원</p>
+         <p><strong>전세가율 60%:</strong> ${location.전세가율_60}만원</p>
+       `;
+ 
+       const infoWindow = new google.maps.InfoWindow({
+         content: contentString
+       });
+       // 이전 InfoWindow가 열려있으면 닫습니다.
+       if (currentInfoWindow) {
+        currentInfoWindow.close();
+      }
+
+      // 새로운 InfoWindow를 연 후, 그 참조를 currentInfoWindow에 저장합니다.
+      infoWindow.open(map, marker);
+      currentInfoWindow = infoWindow;
+     });
+   });
+ }
+ 
+ initMap();
+ </script>
+ 
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5GPHVbAcjS8yiINFJ0e9KUVUPFwV_2LY&callback=initMap"></script>
+ {% endblock %}

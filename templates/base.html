@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Site Title</title>
+
+    {% load static %}
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<header>
+    <div class="header-content text-center mb-5">
+        <h1><span>전세~ 전세~ </span> 간편검색</h1>
+        <div class="header-info">
+            <span class="fs13" style="color:#888" id="LogCountTxt">
+                누적 검색건수 : {{ search_count }} 건
+            </span>
+            <span class="fs13 ml-3" style="color:#888">최근 업데이트 : 2023.08</span>
+        </div>
+    </div>
+</header>
+
+<body>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

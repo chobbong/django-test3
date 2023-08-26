@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Finder</title>
+</head>
+<body>
+    <form action="{% url 'stock_search' %}" method="post">
+        {% csrf_token %}
+        <label for="ticker">종목코드:</label>
+        <input type="text" id="ticker" name="ticker_name">
+        <input type="submit" value="검색">
+    </form>
+
+    {% if image_path %}
+        <div>
+            <h3>결과 그래프:</h3>
+            <img src="{{ image_path }}" alt="Pattern Graph">
+        </div>
+    {% endif %}
+</body>
+</html>
+
