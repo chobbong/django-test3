@@ -28,11 +28,13 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['172.104.96.41']
 
-ALLOWED_HOSTS = ['43.200.202.118']
+# ALLOWED_HOSTS = ['43.200.202.118']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'lstm.apps.LstmConfig',
     'stock.apps.StockConfig',
     'other.apps.OtherConfig',
     'django.contrib.admin',

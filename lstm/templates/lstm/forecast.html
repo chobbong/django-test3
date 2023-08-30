@@ -1,0 +1,27 @@
+<form method="post">
+    {% csrf_token %}
+    <label for="keyword">시군구-번지 일부 입력 (예: 강원특별자치도 강릉시): </label>
+    <input type="text" id="keyword" name="keyword" value="{{ keyword }}">
+    
+    {% if city_lot_nums %}
+    <label for="city_lot_num">원하는 번호를 선택하세요:</label>
+    <select name="city_lot_num" id="city_lot_num">
+        {% for city_lot_num in city_lot_nums %}
+        <option value="{{ city_lot_num }}">{{ city_lot_num }}</option>
+        {% endfor %}
+    </select>
+    {% endif %}
+    
+    <input type="submit" value="예측하기">
+</form>
+
+{% for result in results %}
+    <p>{{ result.forecast }}</p>
+    <p>매매금 예측값: {{ result.매매금|floatformat:2 }}</p>
+    <p>보증금 예측값: {{ result.보증금|floatformat:2 }}</p>
+    <hr>
+{% endfor %}
+
+<p>MSE: {{ mse|floatformat:4 }}, MAE: {{ mae|floatformat:4 }}</p>
+
+ 

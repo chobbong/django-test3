@@ -1,0 +1,53 @@
+appdirs             1.4.4
+asgiref             3.7.2
+backports.zoneinfo  0.2.1
+beautifulsoup4      4.12.2
+certifi             2023.7.22
+charset-normalizer  3.2.0
+contourpy           1.1.0
+cycler              0.11.0
+DateTime            5.2
+Django              4.2.4
+fonttools           4.42.1
+frozendict          2.3.8
+html5lib            1.1
+idna                3.4
+importlib-resources 6.0.1
+kiwisolver          1.4.5
+lxml                4.9.3
+matplotlib          3.7.2
+multitasking        0.0.11
+numpy               1.24.4
+packaging           23.1
+pandas              2.0.3
+pandas-datareader   0.10.0
+Pillow              10.0.0
+pip                 23.2.1
+pyparsing           3.0.9
+python-dateutil     2.8.2
+pytz                2023.3
+requests            2.31.0
+setuptools          68.0.0
+six                 1.16.0
+soupsieve           2.4.1
+sqlparse            0.4.4
+typing_extensions   4.7.1
+tzdata              2023.3
+urllib3             2.0.4
+webencodings        0.5.1
+wheel               0.38.4
+yfinance            0.2.28
+zipp                3.16.2
+zope.interface      6.0
+
+
+
+
+이 csv 파일에서 '전세가율' column은 ('면적당보증금'/'면적당보증금')*100 을 한 값이야. 
+1. 이 csv 파일에서 "전세가율-90%" column을 추가하고  ('면적당보증금'/'면적당보증금')*100*0.9한 값을 넣어주면 돼.
+2. "전세가율-80%" column을 추가하고  ('면적당보증금'/'면적당보증금')*100*0.8한 값을 넣어주면 돼. 
+3. "전세가율-70%" column을 추가하고  ('면적당보증금'/'면적당보증금')*100*0.7한 값을 넣어주면 돼.
+4. "전세가율-60%" columns를 추가하고 ('면적당보증금'/'면적당보증금')*100*0.6한 값을 넣어주면 돼.
+
+
+그리고 그 추가한 csv파일을 저장할 수 있도록 해줘 파일 형식은 utf-8형식으로 저장해줘
